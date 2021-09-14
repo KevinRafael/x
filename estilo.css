@@ -1,0 +1,121 @@
+.btn:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: rgb(61, 61, 61);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 5vh;
+}
+
+img {
+    height: 15vh;
+}
+
+div {
+    align-content: center;
+}
+
+input[type="text"] {
+    width: 100%;
+}
+
+@media (max-width: 400px) {
+    .container {
+        display: inline-grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-row-gap: 1px;
+        grid-template-areas: 
+        "."
+        "."
+        "."
+        "."
+        "."
+        "."
+        "Resumen";
+    }
+
+    .btn-pagar {
+        background-color: green;
+        color: ivory;
+        position: fixed;
+        bottom: 0;
+        width: 85vw;
+    }
+
+    #resumen {
+        grid-area: Resumen;
+        height: 100%;
+        padding: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .card {
+        background-color: rgba(61, 61, 61, 0.1);
+        margin: 1rem;
+    }
+
+    .btn {
+        border: 0.1rem gray solid;
+        width: 99%;
+        text-align: center;
+        display: block;
+    
+    }
+}
+
+@media (min-width: 401px) {
+    .btn {
+        border: 0.1rem gray solid;
+        width: 25%;
+        text-align: center;
+        display: block;
+    
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas: 
+        ". . . Resumen"
+        ". . . Resumen";
+    
+    }
+
+    body {
+        margin-top: 1vh;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .btn-pagar {
+        background-color: green;
+        color: ivory;
+        position: fixed;
+        bottom: 0;
+        width: 23%;
+        font-size: 1.5vw;
+    }
+
+    #resumen {
+        grid-area: Resumen;
+        width: 100%;
+        height: 100%;
+        height: 100vh;
+        padding-top: 5vh;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    h3 {
+        font-size: 3rem;
+    }
+
+    .card {
+        display: inline-block;
+    }
+}

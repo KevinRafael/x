@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h3>Nigiris</h3>
+            <img src="/img/nigiris.jpg" alt="nigiris">
+            <p>Pequeña bolita de arroz, cubierta de salmón, acompañado de pepino, wasabi y zanahoria.</p>
+            <a class="btn btn-primary" id="btnNigiris">Agregar $130</a>
+        </div>
+        <div class="card">
+            <h3>Ramen</h3>
+            <img src="/img/ramen.jpg" alt="ramen">
+            <p>Disfruta 1000 mililitros de ramen.</p>
+            <a class="btn btn-primary" id="btnRamen">Agregar $90</a>
+        </div>
+        <div class="card">
+            <h3>Sashimi</h3>
+            <img src="/img/sashimi.jpg" alt="sashimi">
+            <p>Delicados cortes de salmón fresco, acompañado de pepino, wasabi y zanahoria.</p>
+            <a class="btn btn-primary" id="btnSashimi">Agregar $125</a>
+        </div>
+        <div class="card">
+            <h3>Tataki</h3>
+            <img src="/img/tataki.jpg" alt="tataki">
+            <p>Cortes de salmón grillado con ajonjolí, acompañado de gari y wasabi.</p>
+            <a class="btn btn-primary" id="btnTataki">Agregar $180</a>
+        </div>
+        <div class="card">
+            <h3>Tempura</h3>
+            <img src="/img/tempura.jpg" alt="tempura">
+            <p>Tiras de pollo condimentadas con pimienta japonesa togarashi, pasadas por tempura y fritas.</p>
+            <a class="btn btn-primary" id="btnTempura">Agregar $150</a>
+        </div>
+        <div class="card">
+            <h3>Yakisoba</h3>
+            <img src="/img/yakisoba.jpg" alt="yakisoba">
+            <p>Salteado oriental a base de pasta, brocolí, pimiento, cebolla y calabacín.</p>
+            <a class="btn btn-primary" id="btnYakisoba">Agregar $120</a>
+        </div>
+        <div id="resumen">
+            <div>
+                <table>
+                    <tr>
+                        <td><label for="nombre">Enviar a </label></td>
+                        <td><input type="text" name="nombre"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="direccion">Direccion de entrega</label></td>
+                        <td><input type="text" name="direccion"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="numeroTelefono">Numero de telefono</label></td>
+                        <td> <input type="number" name="numeroTelefono" placeholder="6561234567"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="pagarCon">Medio de pago</label></td>
+                        <td>
+                            <input type="radio" id="mP">
+                            <label for="mP">MercadoPago</label>
+                            <input type="radio" id="pP">
+                            <label for="pP">Paypal</label>
+                            <input type="radio" id="eT">
+                            <label for="eT">Efectivo</label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <h2>Resumen de pedido</h2>
+            <div id="pedido"></div>
+            <a id="total" class="btn btn-pagar">Agrega articulos para ver el total</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    let carrito = []
+    document.querySelector('#btnNigiris').addEventListener('click', () => {
+        carrito[carrito.length] = {
+            nombre: 'Nigiris',
+            precio: 130
+        }
+        render();
+    })
+    document.querySelector('#btnRamen').addEventListener('click', () => {
+        carrito[carrito.length] = {
+            nombre: 'Ramen',
+            precio: 90
+        }
+        render();
+    })
+    document.querySelector('#btnSashimi').addEventListener('click', () => {
+        carrito[carrito.length] = {
+            nombre: 'Sashimi',
+            precio: 125
+        }
+        render();
+    })
+    document.querySelector('#btnTataki').addEventListener('click', () => {
+        carrito[carrito.length] = {
+            nombre: 'Tataki',
+            precio: 180
+        }
+        render();
+    })
+    document.querySelector('#btnTempura').addEventListener('click', () => {
+        carrito[carrito.length] = {
+            nombre: 'Tempura',
+            precio: 150
+        }
+        render();
+    })
+    document.querySelector('#btnYakisoba').addEventListener('click', () => {
+        carrito[carrito.length] = {
+            nombre: 'Yakisoba',
+            precio: 120
+        }
+        render();
+    })
+
+    function render() {
+        pedidos = document.querySelector('div#pedido');
+        pedidos.innerText = '';
+        suma = 0;
+        for(articulo in carrito) {
+            articulo = carrito[articulo];
+            var titulo = document.createElement('p');
+            titulo.innerText = `${articulo['nombre']} - $${articulo['precio']}` ;
+            pedidos.append(titulo)
+            suma += articulo['precio'];
+        }
+        document.querySelector('a#total').innerText = `Total: ${suma}`
+    }
+
+    document.querySelector('a#total').addEventListener('click', () => {
+        if((!document.querySelector('input[name="nombre"]').value == "") && carrito.length > 0) {
+            alert(`Se agrego tu orden\n${document.querySelector('input[name="nombre"]').value}\nTiempo estimado de entrega: ${Math.floor((Math.random() * 49)+10)} minutos \nTotal: $${suma}`)
+        }
+        else {
+            if(carrito.length == 0) {
+                alert('Tu carrito esta vacio')
+            }
+            else {
+                alert('Es necesario completar todos los campos del formulario para entrega.')
+            }
+        }
+    })
+</script>
